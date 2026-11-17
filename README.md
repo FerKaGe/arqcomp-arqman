@@ -9,7 +9,7 @@ Jogo no estilo Pac-Man para revisar conceitos de **Arquitetura Computacional**.
 ### Objetivo
 No labirinto há 16 fichas, cada uma com uma palavra. Acima do labirinto aparece uma **pergunta**: coma a ficha com a **resposta certa**.
 
-- Resposta certa: a ficha some, você ganha **+100 pontos** e aparece a próxima pergunta.
+- Resposta certa: a ficha some, você ganha **+100 pontos** e aparece a próxima pergunta. O jogo pausa por **3 segundos** com uma contagem na tela, para dar tempo de ler a pergunta (o mesmo acontece no início da partida).
 - Resposta errada: você **perde uma vida** e volta ao início com a mesma pergunta (a ficha errada continua no labirinto).
 - Fantasmas: se um deles encostar em você, também perde uma vida. Dá para desligá-los na tela inicial ou na pausa.
 - Você tem **3 vidas**. Responda as 16 perguntas para vencer.

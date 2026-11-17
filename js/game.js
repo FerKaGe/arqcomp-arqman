@@ -65,6 +65,7 @@
   const GHOST_SPEED_STEP = 0.07;  // acelera um pouco a cada acerto
   const LIVES = 3;
   const READY_TIME = 1.3;
+  const READING_TIME = 3;         // pausa para ler a nova pergunta
   const DEATH_TIME = 1.5;
 
   const DIRS = {
@@ -244,14 +245,27 @@
     buildChips();
     resetPositions();
     hideOverlays();
-    toReady();
+    toReady(READING_TIME, true);
     updateHud();
   }
 
-  function toReady() {
+  // Congela o jogo por alguns segundos. Com contagem, mostra 3, 2, 1 para dar tempo de ler a pergunta.
+  function toReady(seconds = READY_TIME, contagem = false) {
     game.state = "ready";
-    game.timer = READY_TIME;
-    showToast("Pronto!", "");
+    game.timer = seconds;
+    game.countdown = contagem;
+    game.countShown = null;
+    if (contagem) updateCountdown();
+    else showToast("Pronto!", "");
+  }
+
+  function updateCountdown() {
+    const n = Math.max(1, Math.ceil(game.timer));
+    if (n === game.countShown) return;
+    game.countShown = n;
+    el.toast.className = "toast contador";
+    el.toast.innerHTML = `<span class="cont-lbl">Leia a pergunta</span><span class="cont-num">${n}</span>`;
+    el.toast.hidden = false;
   }
 
   function hideOverlays() {
@@ -277,6 +291,7 @@
     for (const g of game.ghosts) g.speed = GHOST_SPEED + GHOST_SPEED_STEP * game.qIndex;
     updateHud();
     if (game.qIndex >= WORDS.length) win();
+    else toReady(READING_TIME, true);
   }
 
   function die(motivo, chip) {
@@ -381,6 +396,7 @@
     if (game.state === "ready") {
       game.timer -= dt;
       if (game.timer <= 0) { game.state = "playing"; hideToast(); }
+      else if (game.countdown) updateCountdown();
       return;
     }
     if (game.state === "dying") {
