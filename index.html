@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#05060f">
+  <meta name="description" content="ArqMan: jogo no estilo Pac-Man com perguntas de Arquitetura Computacional.">
+  <title>ArqMan</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header id="hud">
+      <div class="hud-top">
+        <h1 class="logo">ARQ<span>MAN</span></h1>
+        <div class="stats">
+          <div class="stat"><span class="lbl">Progresso</span><span id="progresso" class="val">0/16</span></div>
+          <div class="stat"><span class="lbl">Pontos</span><span id="pontos" class="val">0</span></div>
+          <div class="stat"><span class="lbl">Vidas</span><span id="vidas" class="val vidas" aria-label="3 vidas"></span></div>
+        </div>
+        <button id="btnPausa" class="btn-icon" type="button" aria-label="Pausar" title="Pausar (P)">❚❚</button>
+      </div>
+      <div id="pergunta-box">
+        <span class="lbl">Pergunta</span>
+        <p id="pergunta">Pressione “Começar” para jogar.</p>
+      </div>
+    </header>
+
+    <main id="stage">
+      <canvas id="jogo" aria-label="Labirinto do jogo"></canvas>
+      <div id="toast" class="toast" hidden></div>
+
+      <section id="telaInicio" class="overlay">
+        <div class="painel">
+          <h2 class="titulo">ARQ<span>MAN</span></h2>
+          <p class="sub">Arquitetura Computacional no labirinto</p>
+          <ul class="instrucoes">
+            <li>Leia a <b>pergunta</b> no topo e coma a ficha com a <b>resposta certa</b>.</li>
+            <li>Acertou: <b>+100</b> pontos e vem a próxima pergunta.</li>
+            <li>Comeu a ficha errada ou foi pego por um fantasma: <b>perde uma vida</b>.</li>
+            <li><b>PC:</b> setas ou WASD · <b>P</b> pausa</li>
+            <li><b>Celular:</b> deslize o dedo no labirinto ou use o direcional.</li>
+          </ul>
+          <div class="opcoes">
+            <label><input type="checkbox" id="optAleatoria"> Ordem aleatória</label>
+            <label><input type="checkbox" id="optFantasmas" checked> Fantasmas</label>
+          </div>
+          <button id="btnComecar" class="btn" type="button">Começar</button>
+        </div>
+      </section>
+
+      <section id="telaPausa" class="overlay" hidden>
+        <div class="painel">
+          <h2 class="titulo pequeno">Pausado</h2>
+          <div class="opcoes">
+            <label><input type="checkbox" id="optFantasmasPausa" checked> Fantasmas</label>
+          </div>
+          <button id="btnContinuar" class="btn" type="button">Continuar</button>
+          <button id="btnReiniciar" class="btn btn-sec" type="button">Recomeçar</button>
+        </div>
+      </section>
+
+      <section id="telaFim" class="overlay" hidden>
+        <div class="painel">
+          <h2 id="fimTitulo" class="titulo pequeno">Fim de jogo</h2>
+          <p id="fimTexto" class="sub"></p>
+          <div class="opcoes">
+            <label><input type="checkbox" id="optAleatoriaFim"> Ordem aleatória</label>
+            <label><input type="checkbox" id="optFantasmasFim" checked> Fantasmas</label>
+          </div>
+          <button id="btnDeNovo" class="btn" type="button">Jogar de novo</button>
+        </div>
+      </section>
+    </main>
+
+    <nav id="dpad" aria-label="Direcional">
+      <button type="button" class="dp up" data-dir="up" aria-label="Cima">▲</button>
+      <button type="button" class="dp left" data-dir="left" aria-label="Esquerda">◀</button>
+      <button type="button" class="dp right" data-dir="right" aria-label="Direita">▶</button>
+      <button type="button" class="dp down" data-dir="down" aria-label="Baixo">▼</button>
+    </nav>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
