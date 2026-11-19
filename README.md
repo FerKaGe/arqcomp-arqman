@@ -47,13 +47,7 @@ Dica: você pode apertar a próxima direção antes de chegar ao cruzamento; o p
 
 ## Executar localmente
 
-O jogo é feito só com HTML, CSS e JavaScript, sem dependências. Basta abrir o `index.html` no navegador ou servir a pasta:
-
-```bash
-python3 -m http.server 8000
-```
-
-E acessar http://localhost:8000.
+O jogo é feito só com HTML, CSS e JavaScript, sem dependências. Basta abrir o `index.html` no navegador.
 
 ## Estrutura
 
